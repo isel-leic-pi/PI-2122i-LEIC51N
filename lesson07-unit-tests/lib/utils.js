@@ -15,6 +15,11 @@ function flatten(arr) {
     return reduce(arr, (prev, curr) => prev.concat(curr), [])
 }
 
+Array.prototype.flatten = function flatten() {
+    return reduce(this, (prev, curr) => prev.concat(curr), [])
+}
+
+
 function reduce(arr, accumulator, initial) {
     let prev = initial
     for (let i = 0; i < arr.length; i++) {

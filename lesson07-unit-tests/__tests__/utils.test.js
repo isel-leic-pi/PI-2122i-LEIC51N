@@ -13,7 +13,7 @@ test('Flattening and array with 3 sub arrays', () => {
     /*
      * Act 
      */
-    const actual = utils.flatten(arr)
+    const actual = arr.flatten() // utils.flatten(arr)
     /*
      * Assert = Compare the expected value with the actual value 
      */

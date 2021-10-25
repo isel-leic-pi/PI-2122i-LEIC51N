@@ -4,7 +4,8 @@ const fetch = require('node-fetch')
 
 module.exports = {
     getTopTracks,
-    getTopArtists
+    getTopArtists,
+    tracksOfTopArtist
 }
 
 const LASTFM_HOST = 'http://ws.audioscrobbler.com/2.0/'
@@ -45,5 +46,6 @@ function getTopArtists(country) {
  * @param {String} country 
  */
 function tracksOfTopArtist(country) {
-    
+    return getTopArtists(country)
+        .then(names => getTopTracks(names[0]))
 }

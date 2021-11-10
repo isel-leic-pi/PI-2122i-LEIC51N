@@ -16,6 +16,7 @@
     "eslint": "^8.1.0"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "jest": "^27.3.1"
   }
 }

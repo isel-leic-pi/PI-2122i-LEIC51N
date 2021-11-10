@@ -11,7 +11,7 @@ module.exports = {
     getAll,
     getTask,
     deleteTask,
-    saveTask: insertTask
+    insertTask
 }
 
 /**

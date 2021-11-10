@@ -3,12 +3,12 @@
 const tasks = require('./../lib/tasks-db')
 const fs = require('fs/promises')
 
-function saveDummies() {
+function insertDummies() {
     const prms = [
-        tasks.saveTask('gamboa', 7, 'swim-mile', 'Achieve 1 mile swimming open water.'),
-        tasks.saveTask('gamboa', 3, 'pi-workout', 'Complete the first workout of Web Dev course.'),
-        tasks.saveTask('gamboa', 20, 'peaa', 'Finish the book of Patterns of Enterprise Application Architecture by Martin Fowler.'),
-        tasks.saveTask('rambo', 4, 'room-manage', 'Manage all books and stuff in my room')
+        tasks.insertTask('gamboa', 7, 'swim-mile', 'Achieve 1 mile swimming open water.'),
+        tasks.insertTask('gamboa', 3, 'pi-workout', 'Complete the first workout of Web Dev course.'),
+        tasks.insertTask('gamboa', 20, 'peaa', 'Finish the book of Patterns of Enterprise Application Architecture by Martin Fowler.'),
+        tasks.insertTask('rambo', 4, 'room-manage', 'Manage all books and stuff in my room')
     ]
     return Promise.all(prms)
 }
@@ -19,7 +19,7 @@ beforeAll(() => {
     tasks.changePath(DATA_PATH)
     return fs
         .mkdir(DATA_PATH, { recursive: true }) // create folder if not exists
-        .then(() => saveDummies())
+        .then(() => insertDummies())
 })
 
 afterAll(() => {
@@ -69,7 +69,7 @@ test('Get unkown task for unkown user', () => {
 })
 
 test('Crate and delete a task', async () => {
-    const shoes = await tasks.saveTask('rambo', 3, 'run-shoes', 'Buy new running shoes')
+    const shoes = await tasks.insertTask('rambo', 3, 'run-shoes', 'Buy new running shoes')
     const all = await tasks.getAll('rambo')
     expect(all.length).toBe(2)
     const actual = await tasks.getTask('rambo', shoes.id)

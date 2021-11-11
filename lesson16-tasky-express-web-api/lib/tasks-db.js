@@ -93,11 +93,15 @@ function deleteTask(username, id) {
  * @property {String} description
  */
 /**
- * @returns {Task}
+ * 
+ * @param {Number} days Number of days to complete this task.
+ * @param {String} title Title of this task.
+ * @param {String} description Description of this task.
+ * @returns {Task} New Task object.
  */
-function newTask(due, title, description) {
+function newTask(days, title, description) {
     const dt = new Date()
-    dt.setDate(dt.getDate() + due)
+    dt.setDate(dt.getDate() + days)
     return {
         id: Math.random().toString(36).substr(2), 
         dueDate: dt, 

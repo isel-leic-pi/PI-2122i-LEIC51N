@@ -38,7 +38,7 @@ function getAll(username) {
  * @param {String} id Task id
  * @returns {Promise.<Task>} Fulfills with the Task object for given id
  */
- function getTask(username, id) {
+function getTask(username, id) {
     return fs
         .readdir(dataPath)
         .then(files => readTask(findTask(files, username, id)))

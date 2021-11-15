@@ -32,6 +32,14 @@ function getAll(username) {
         .then(files => Promise.all(files
             .filter(f => f.includes(username))
             .map(f => readTask(f))))
+        .then(tasks => {
+            if(tasks.length == 0) {
+                const err =  Error('There is no username ' + username)
+                err.status = 404
+                throw err
+            }
+            else return tasks
+        })
 }
 
 /**
@@ -55,9 +63,17 @@ function
 
 findTask(files, username, id) {
     files = files.filter(f => f.includes(username))
-    if(files.length == 0) throw Error('No tasks for ' + username) 
+    if(files.length == 0) {
+        const err =  Error('No tasks for ' + username) 
+        err.status = 404
+        throw err
+    }
     files = files.filter(f => f.includes(id))
-    if(files.length == 0) throw Error('No task with id ' + id) 
+    if(files.length == 0) {
+        const err =  Error('No task with id ' + id) 
+        err.status = 404
+        throw err
+    }
     return files[0]
 }
 

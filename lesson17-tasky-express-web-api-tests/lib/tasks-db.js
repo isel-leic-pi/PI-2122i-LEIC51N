@@ -11,7 +11,8 @@ module.exports = {
     getAll,
     getTask,
     deleteTask,
-    insertTask
+    insertTask,
+    updateTask
 }
 
 /**
@@ -36,7 +37,7 @@ function getAll(username) {
 /**
  * @param {String} username
  * @param {String} id Task id
- * @returns {Promise.<Task>} Fulfills with the Task object for given id
+ * @returns {Promise.<Task>} Fulfills with the Task object for given id or Rejected otherwise.
  */
 function getTask(username, id) {
     return fs
@@ -50,7 +51,9 @@ function getTask(username, id) {
  * @param {String} id Task id
  * @returns String
  */
-function findTask(files, username, id) {
+function 
+
+findTask(files, username, id) {
     files = files.filter(f => f.includes(username))
     if(files.length == 0) throw Error('No tasks for ' + username) 
     files = files.filter(f => f.includes(id))
@@ -122,4 +125,28 @@ function insertTask(username, due, title, description) {
     return fs
         .writeFile(dataPath + file, JSON.stringify(task))
         .then(() => task)
+}
+
+/**
+ * 
+ * @param {String} username 
+ * @param {String} id 
+ * @param {Number} days 
+ * @param {String} title 
+ * @param {String} description 
+ * @returns Promise<Task> with the already updated values
+ */
+function updateTask(username, id, days, title, description) {   
+    const dt = new Date()
+    dt.setDate(dt.getDate() + days)  
+    return getTask(username,id)
+        .then(task => {
+            const file = `task-${username}-${task.id}-${task.title}.json`
+            task.title = title
+            task.dueDate = dt, 
+            task.description = description
+            return fs
+                .writeFile(dataPath + file, JSON.stringify(task))
+                .then(() => task)
+        })
 }

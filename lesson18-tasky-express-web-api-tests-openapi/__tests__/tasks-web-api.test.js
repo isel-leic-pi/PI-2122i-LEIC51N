@@ -53,3 +53,24 @@ test('Get all tasks for unkown username', () => {
         .get('/users/EUREUREUR/tasks')
         .expect(404)
 })
+
+test('Update a task for username rambo', () => {
+    return tasks
+        .getAll('rambo')
+        .then(tasks => {
+            expect(tasks.length).toBe(1)
+            return request(app)
+                .put('/users/rambo/tasks/' + tasks[0].id)
+                .send({
+                    days: 7,
+                    title: 'bla bla',
+                    description: 'say bla bla'
+                })
+                .set('Accept', 'application/json')
+                .expect(200)
+                .expect('Content-Type', /json/)
+                .then(resp => {
+                    expect(resp.body.message).toBe(`Task with id ${tasks[0].id} updated!`)
+                })
+        })
+})

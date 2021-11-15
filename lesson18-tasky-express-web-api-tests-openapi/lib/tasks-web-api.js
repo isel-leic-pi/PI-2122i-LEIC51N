@@ -25,4 +25,21 @@ router.delete('/users/:username/tasks/:taskId', (req, res, next) => {
         .catch(next)
 })
 
+router.put('/users/:username/tasks/:taskId', (req, res, next) => {
+    tasks
+        .updateTask(
+            req.params.username,
+            req.params.taskId,
+            req.body.days,
+            req.body.title,
+            req.body.description
+        )
+        .then(task => res.json({
+            message: `Task with id ${task.id} updated!`,
+            task: JSON.stringify(task)
+        }))
+        .catch(next)
+})
+
+
 module.exports = router

@@ -5,6 +5,7 @@ const app = express()
 const tasksRouter = require('./lib/tasks-web-api')
 const PORT = 3000
 
+app.use(express.json()) // Parses of HTTP request body and populates req.body
 app.use(tasksRouter)
 
 // eslint-disable-next-line no-unused-vars

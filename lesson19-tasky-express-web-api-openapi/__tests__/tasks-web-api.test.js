@@ -2,7 +2,6 @@
 
 const request = require('supertest')
 const express = require('express')
-const tasksRouter = require('./../lib/tasks-web-api')
 const tasks = require('./../lib/tasks-db')
 const fs = require('fs/promises')
 
@@ -10,7 +9,7 @@ const fs = require('fs/promises')
  * Setup express app
  */
 const app = express()
-app.use(tasksRouter)
+require('./../lib/tasky-router')(app)
 
 function insertDummies() {
     const prms = [

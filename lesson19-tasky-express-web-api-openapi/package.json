@@ -15,9 +15,12 @@
     "@types/jest": "^27.0.2",
     "eslint": "^8.1.0",
     "jest": "^27.3.1",
+    "jest-openapi": "^0.14.1",
     "supertest": "^6.1.6"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "swagger-ui-express": "^4.1.6",
+    "yamljs": "^0.3.0"
   }
 }

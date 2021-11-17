@@ -4,6 +4,10 @@ const request = require('supertest')
 const express = require('express')
 const tasks = require('./../lib/tasks-db')
 const fs = require('fs/promises')
+const jestOpenAPI = require('jest-openapi').default
+
+// Load an OpenAPI file (YAML or JSON) into this plugin
+jestOpenAPI(process.cwd() + '/openapi.yaml');
 
 /**
  * Setup express app
@@ -43,6 +47,8 @@ test('Get all tasks for username gamboa', () => {
         .expect('Content-Type', /json/)
         .expect(200)
         .then(resp => {
+            // Assert that the HTTP response satisfies the OpenAPI spec
+            expect(resp).toSatisfyApiSpec()
             return expect(resp.body.length).toBe(3)
         })
 })

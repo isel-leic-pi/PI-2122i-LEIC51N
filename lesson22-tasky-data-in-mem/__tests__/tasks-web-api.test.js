@@ -2,7 +2,7 @@
 
 const request = require('supertest')
 const express = require('express')
-const tasks = require('./../lib/tasks-db')
+const tasks = require('./../lib/tasks-in-mem')
 const fs = require('fs/promises')
 const jestOpenAPI = require('jest-openapi').default
 

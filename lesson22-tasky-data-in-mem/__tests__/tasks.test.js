@@ -1,6 +1,6 @@
 'use strict'
 
-const tasks = require('./../lib/tasks-db')
+const tasks = require('./../lib/tasks-in-mem')
 const fs = require('fs/promises')
 
 function insertDummies() {
@@ -48,8 +48,8 @@ test('Get a single task for given username and ID', () => {
             if(all.length == 0) throw Error('Missing swim task!')
             return all[0]
         })
-        .then(swim => tasks.getTask('gamboa', swim.id))
-        .then(tasks => expect(tasks.title).toBe('swim-mile'))
+        .then(swim => tasks.getTask('gamboa', swim.id)) // Promise<Task>
+        .then(task => expect(task.title).toBe('swim-mile'))
 })
 
 test('Get unkown task', () => {
@@ -65,7 +65,7 @@ test('Get unkown task for unkown user', () => {
     return tasks
         .getTask('muadib', taskId)
         .then(tasks => { throw Error('Assertion failed. It should not succeed getting a task.') })
-        .catch(err => expect(err.message).toBe('No tasks for muadib'))
+        .catch(err => expect(err.message).toBe('muadib not available!'))
 })
 
 test('Crate and delete a task', async () => {

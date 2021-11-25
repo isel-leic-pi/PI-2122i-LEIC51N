@@ -1,7 +1,6 @@
 'use strict'
 
 const tasks = require('./../lib/tasks-in-mem')
-const fs = require('fs/promises')
 
 function insertDummies() {
     const prms = [
@@ -13,20 +12,8 @@ function insertDummies() {
     return Promise.all(prms)
 }
 
-const DATA_PATH = './__tests__/data/'
-
 beforeAll(() => { 
-    tasks.changePath(DATA_PATH)
-    return fs
-        .mkdir(DATA_PATH, { recursive: true }) // create folder if not exists
-        .then(() => insertDummies())
-})
-
-afterAll(() => {
-    return fs
-        .readdir(DATA_PATH)
-        .then(files => files.map(f => fs.unlink(DATA_PATH + f)))
-        .then(prms => Promise.all(prms))
+    return insertDummies()
 })
 
 test('Get all tasks', () => {

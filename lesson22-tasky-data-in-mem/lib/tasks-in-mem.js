@@ -1,7 +1,6 @@
 'use strict'
 
 module.exports = {
-    changePath,
     getAll,
     getTask,
     deleteTask,
@@ -14,12 +13,6 @@ module.exports = {
  * the username and the value is an array of Task instances.
  */
 const tasks = {}
-
-/**
- * @param {String} p New path to store tasks files.
- */
-function changePath() {
-}
 
 /**
  * @param {String} username

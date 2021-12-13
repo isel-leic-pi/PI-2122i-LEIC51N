@@ -1,6 +1,7 @@
 'use strict'
 
 module.exports = {
+    getUsers, 
     getAll,
     getTask,
     deleteTask,
@@ -13,6 +14,13 @@ module.exports = {
  * the username and the value is an array of Task instances.
  */
 const tasks = {}
+
+/**
+ *  @returns {Promise.<Array.<String>>} Fullfield with a String array with th usernames.
+ */
+function getUsers() {
+    return Promise.resolve(Object.keys(tasks))
+}
 
 /**
  * @param {String} username

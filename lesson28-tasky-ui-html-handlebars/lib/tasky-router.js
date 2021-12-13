@@ -1,8 +1,8 @@
 'use strict'
 
 const express = require('express')
-const tasksRouter = require('./tasks-web-api')
-const path = require('path')
+const tasksWebApi = require('./tasks-web-api')
+const tasksWebApp = require('./tasks-web-app')
 
 /**
  * @param {Express} app 
@@ -19,13 +19,8 @@ module.exports = function(app) {
     /**
      * Route handlers
      */
-    app.get('/', (req, res) => {
-        res.render(path.join(process.cwd(), 'views/index.html'))
-    })
-    app.get('/users', (req, res) => {
-        res.sendFile(path.join(process.cwd(), 'views/users.html'))
-    })
-    app.use(tasksRouter)
+    app.use(tasksWebApp)
+    app.use('/api', tasksWebApi)
 
     // eslint-disable-next-line no-unused-vars
     app.use((err, req, res, next) => {

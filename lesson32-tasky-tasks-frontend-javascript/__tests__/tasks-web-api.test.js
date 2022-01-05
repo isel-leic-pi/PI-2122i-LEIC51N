@@ -12,6 +12,7 @@ jestOpenAPI(process.cwd() + '/openapi.yaml');
  * Setup express app
  */
 const app = express()
+require('./../lib/tasks-web-api').setTasksDb(tasks)
 require('./../lib/tasky-router')(app)
 
 function insertDummies() {

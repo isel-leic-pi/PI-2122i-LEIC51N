@@ -1,8 +1,12 @@
 'use strict'
 
 const express = require('express')
-const tasks = require('./tasks-in-mem')
+let tasks = require('./tasks-in-elastic')
 const router = express.Router()
+
+router.setTasksDb = function(tasksDb) {
+    tasks = tasksDb
+}
 
 router.get('/users/:username/tasks', (req, res, next) => {
     tasks

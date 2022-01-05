@@ -26,7 +26,10 @@ function getUrl() {
  *  @returns {Promise.<Array.<String>>} Fullfield with a String array with th usernames.
  */
 function getUsers() {
-    return Promise.reject('Not implemented!')
+    return fetch(elasticUrl + '/_search')
+        .then(res => { if(checkStatus(res, 200)) return res.json()})
+        .then(doc => doc.hits.hits.map(d => d._source.username))
+        .then(arr => [...new Set(arr)])
 }
 
 /**

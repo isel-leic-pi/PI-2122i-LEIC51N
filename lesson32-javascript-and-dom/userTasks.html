@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <title>Tasky App</title>
+    <link href="bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="/users">Users</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/tasks">Tasks</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+        </li>
+    </ul>
+    <div class="container">
+        <h1>Tasky Web App</h1>
+        <form method="post">
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Title" name="title">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Description" name="desc">
+                </div>
+                <div class="col">
+                    <input type="date" class="form-control" placeholder="Due Date" name="dueDate">
+                </div>
+                <div class="col">
+                    <input type="submit" class="form-control btn-primary" value="New">
+                </div>
+            </div>
+        </form>
+        <hr>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Due Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                    <td>
+                        <a href="tasks/wvs0v218yns">swim-mile</a>
+                    </td>
+                    <td>Achieve 1 mile swimming open water.</td>
+                    <td>2022-01-12</td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                    <td>
+                        <a href="tasks/uepl2gvkdv">pi-workout</a>
+                    </td>
+                    <td>Complete the first workout of Web Dev course.</td>
+                    <td>2022-01-08</td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                    <td>
+                        <a href="tasks/jzzrduf38t">peaa</a>
+                    </td>
+                    <td>Finish the book of Patterns of Enterprise Application Architecture by Martin Fowler.</td>
+                    <td>2022-01-25</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="highlight">Chelas 2021</p>
+    </div>
+</body>
+
+</html>

@@ -23,6 +23,15 @@ beforeAll(() => {
         .then(data => insertDummies())
 })
 
+test('Get all users', () => {
+    return tasks
+        .getUsers(users => {
+            expect(users).toContain('luke')
+            expect(users).toContain('vader')
+        })
+})
+
+
 test('Get all tasks', () => {
     return Promise.all([
             tasks.getAll('luke'),

@@ -53,7 +53,12 @@ function getAll(username) {
     const userTasks = tasks[username]
     return !userTasks
         ? rejectPromise(404, 'There is no username ' + username)
-        : Promise.resolve(userTasks)
+        : Promise.resolve(userTasks.map(t => { return {
+            title: t.title,
+            id: t.id,
+            description: t.description,
+            dueDate: t.dueDate.toISOString().slice(0, 10)
+        }}))
 }
 
 function rejectPromise(status, msg) {
@@ -97,7 +102,7 @@ function deleteTask(username, id) {
  * @typedef Task
  * @type {Object}
  * @property {String} id Unique Id
- * @property {Date} due Number of days to due task
+ * @property {Date} dueDate Date that task should complete.
  * @property {String} title 
  * @property {String} description
  */

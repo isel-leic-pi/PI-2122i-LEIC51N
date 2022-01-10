@@ -18,6 +18,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th></th>
             <th>Title</th>
             <th>Description</th>
             <th>Due Date</th>
@@ -26,6 +27,7 @@
     <tbody>
         {{#each tasks}}
         <tr>
+            <td><button data-task-id="{{id}}" class="btn btn-danger">Delete</button></td>
             <td>
                 <a href="tasks/{{id}}">{{title}}</a>
             </td>

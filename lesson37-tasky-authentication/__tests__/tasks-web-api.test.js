@@ -17,6 +17,8 @@ require('./../lib/tasky-router')(app)
 
 function insertDummies() {
     const prms = [
+        tasks.insertUser('gamboa'),
+        tasks.insertUser('rambo'),
         tasks.insertTask('gamboa', 7, 'swim-mile', 'Achieve 1 mile swimming open water.'),
         tasks.insertTask('gamboa', 3, 'pi-workout', 'Complete the first workout of Web Dev course.'),
         tasks.insertTask('gamboa', 20, 'peaa', 'Finish the book of Patterns of Enterprise Application Architecture by Martin Fowler.'),
@@ -51,7 +53,7 @@ test('Get all tasks for unkown username', () => {
 
 test('Update a task for username rambo', () => {
     return tasks
-        .getAll('rambo')
+        .getAllTasks('rambo')
         .then(tasks => {
             expect(tasks.length).toBe(1)
             return request(app)

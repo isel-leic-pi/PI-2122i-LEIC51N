@@ -20,7 +20,7 @@ router.get('/users', (req, res, next) => {
 })
 router.get('/users/:username/tasks', (req, res, next) => {
     tasks
-        .getAll(req.params.username)
+        .getAllTasks(req.params.username)
         .then(tasks => {
             res.render('tasks', {tasks})
         })

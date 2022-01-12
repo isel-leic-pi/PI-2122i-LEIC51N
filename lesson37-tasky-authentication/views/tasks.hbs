@@ -1,0 +1,39 @@
+<form method="post">
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Title" name="title">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Description" name="desc">
+        </div>
+        <div class="col">
+            <input type="date" class="form-control" placeholder="Due Date" name="dueDate">
+        </div>
+        <div class="col">
+            <input type="submit" class="form-control btn-primary" value="New">
+        </div>
+    </div>
+</form>
+<hr>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Due Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each tasks}}
+        <tr>
+            <td><button data-task-id="{{id}}" class="btn btn-danger">Delete</button></td>
+            <td>
+                <a href="tasks/{{id}}">{{title}}</a>
+            </td>
+            <td>{{description}}</td>
+            <td>{{dueDate}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
